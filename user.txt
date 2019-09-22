@@ -1,0 +1,28 @@
+public User changePassword(String pass,String email){
+		con=DaoConnection.getConnection();
+		User user=null;
+		String cmd="Update users set password=? where email=?";
+		try {
+			ps=con.prepareStatement(cmd);
+			ps.setString(1, pass);
+			ps.setString(2, email);
+			ps.executeUpdate();
+			System.out.println("Password changed");
+			//return user ;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+			
+		}
+		return user;
+		
+	}
+
+	public boolean ConfirmPassword(String newpwd,String cnfpwd) {
+		
+			if(newpwd.equals(cnfpwd))
+						return true;
+			
+			else
+				 return false;
+	}
